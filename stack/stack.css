@@ -1,4 +1,7 @@
 /* */
+html, body {
+    background: #090A0F;
+}
 
 /* Flip cards */
 .imgContainer{
