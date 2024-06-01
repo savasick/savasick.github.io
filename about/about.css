@@ -2,11 +2,13 @@
 html {
     height: 100%;
     background: #090A0F;
+    margin: 0;
 }
 
 body {
     background: url(https://i.ytimg.com/vi/JquobII5VjA/maxresdefault.jpg);
     background-size: cover;
+    background-attachment: fixed;
     position: relative;
     height: 100%;
     font-family: 'Open Sans', sans serif;
