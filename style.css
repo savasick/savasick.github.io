@@ -503,7 +503,7 @@ nav::before {
     bottom: 0;
     left: 0;
     z-index: -1;
-    width: 22em;
+    width: 48em;
     background: #090A0F;
     content: '';
     transform: skewX(15deg) translateX(-100%);
@@ -512,9 +512,9 @@ nav::before {
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-@media (min-width: 35em) {
+@media (min-width: 50em) {
 nav::before {
-    width: 35em;
+    width: 50em;
 }
 }
 
@@ -708,3 +708,10 @@ article {
     transform: translate(-22px,5px) skew(21deg); 
   }
 }
+
+/* reduce text size on small screens */
+@media only screen and (max-width: 760px) {
+    .main {
+      font-size: 0.4em; 
+    }
+  }
