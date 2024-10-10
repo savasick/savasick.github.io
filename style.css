@@ -1,0 +1,312 @@
+* {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    background-color: #121212;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-family: 'Fira Code', monospace;
+    background-color: #000;
+}
+
+::selection {
+    background-color: rgb(57, 255, 20);
+    color: #fff;
+}
+
+#loading {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loadingtext {
+    font-size: 50px;
+    color: rgb(57, 255, 20);
+    text-shadow: rgba(57,255,20,0.8) 0px 0px 28px; 
+    animation: loading 1s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#content {
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 135px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.firstbox {
+    margin-left: 50px;
+}
+
+.secondbox {
+    margin-right: 50px;
+}
+
+.firstbox h1 {
+    font-size: 7rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.firstbox h3 {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    font-size: 3.5rem;
+    display: inline-block;
+    padding-right: 2px;
+    border-right: 2px solid rgb(57, 255, 20);
+    white-space: nowrap;
+}
+
+.firstbox p {
+    font-size: 1.5rem;
+    font-weight: 1.8;
+    max-width: 1000px;
+    line-height: 40px;
+}
+
+.image {
+    background: url("./assets/sava.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    box-shadow: 0 0 25px rgb(57, 255, 20);
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+}
+
+.image:hover{
+    box-shadow: 0 0 25px rgb(57, 255, 20),
+                0 0 50px rgb(57, 255, 20);
+}
+
+span {
+    color: rgb(57, 255, 20);
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    border-radius: 4rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+    background-color: #121212;
+    color: rgb(57, 255, 20);
+    border: 3px solid rgb(57, 255, 20);
+    box-shadow:  0 0 25px transparent;
+    margin-top: 50px;
+}
+
+.btn:hover{
+    box-shadow: 0 0 25px rgb(57, 255, 20);
+}
+
+@media (max-width:1834px) {
+    .firstbox h1 {
+        font-size: 5rem;
+    }
+
+    .firstbox h3 {
+        font-size: 2.5rem;
+    }
+
+    .firstbox p {
+        max-width: 800px;
+    }
+}
+
+@media (max-width:1630px) {
+    .image {
+        width: 400px;
+        height: 400px;
+    }
+
+    .firstbox p {
+        max-width: 700px;
+        line-height: 32px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width:1322px) {
+    #content {
+        flex-direction: column-reverse;
+    }
+    .image{
+        margin-top: 210px;
+    }
+    body {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .firstbox, .secondbox {
+        margin: 0;
+    }
+
+    #content {
+        gap: 80px;
+    }
+
+    .firstbox {
+        margin: 0px 50px 0px 50px;
+    }
+}
+
+@media (max-width:800px) {
+    body {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .image{
+        margin-top: 100px;
+    }
+
+    .firstbox h1 {
+        font-size: 3rem;
+    }
+
+    .firstbox h3 {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        font-size: 1.7rem;
+    }
+
+    .firstbox p {
+        font-size: 1rem;
+        max-width: 500px;
+        font-family: 600;
+    }
+
+    .image {
+        width: 300px;
+        height: 300px;
+    }
+
+    #content {
+        gap: 80px;
+    }
+
+    .firstbox .btn {
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 0.8rem 2.8rem;
+        margin-top: 30px;
+    }
+}
+
+
+@media (max-width:500px) {
+    body {
+        margin:0;
+    }
+
+    .firstbox h1 {
+        font-size: 2.2rem;
+    }
+
+    .firstbox h3 {
+        margin-bottom: 30px;
+        margin-top: 30px;
+        font-size: 1.2rem;
+    }
+
+    .firstbox p {
+        font-size: 0.8rem;
+        font-weight: 500;
+        line-height: 26px;
+    }
+
+    .image {
+        width: 220px;
+        height: 220px;
+    }
+
+    .btn {
+        margin-top: 30px;
+    }
+}
+
+.ascii-art {
+    font-family: monospace;
+    white-space: pre;
+    color: rgba(0, 255, 0, 0.2);
+    position: fixed;
+    bottom: -3%;
+    left: -3%;
+    z-index: -1;
+    font-size: x-small;
+    width: 100%;
+}
+
+  .social-links {
+    display: flex;
+  }
+  
+  .social-links a {
+    background: black;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.05);
+    margin: 3% 1%;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s;
+  }
+  
+  .social-links a .fab {
+    font-size: 42px;
+    line-height: 60px;
+    position: relative;
+    z-index: 10;
+    transition: color 0.5s;
+  }
+  
+  .social-links a::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: -90px;
+    left: 0;
+    background: #000;
+    background: linear-gradient(-45deg, #1ced81, #17ffe8);
+    position: absolute;
+    transition: 0.5s;
+  }
+  
+  .social-links a:hover::after {
+    top: 0;
+  }
+  
+  .social-links a:hover .fab {
+    color: black;
+  }
+  
+  .social-links a:hover {
+    transform: translateY(-10px);
+  }
