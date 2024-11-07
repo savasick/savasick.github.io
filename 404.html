@@ -3,8 +3,182 @@
 <head>
   <meta charset="UTF-8">
   <title>give up?</title>
-  <link rel="stylesheet" href="./404.css">
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  <style>
+    * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    background-color: #131313;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .main {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    border-radius: 30%;
+    align-items: flex-end;
+    font-size: 18px;
+  }
+  .main #container {
+    z-index: 2;
+    transform: translateY(-65px);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    background-color: #BABABA;
+    border-top: 2px solid #e8e8e8;
+    border-left: 2px solid #e8e8e8;
+    border-right: 2px solid #757575;
+    border-bottom: 2px solid #757575;
+    filter: sepia(50%);
+  }
+  .main #container .title {
+    width: 100%;
+    background-color: #0000C2;
+    display: flex;
+    color: white;
+    padding: 5px 5px 5px 8px;
+  }
+  .main #container .title p {
+    margin-right: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+  }
+  .main #container .title button {
+    margin-left: auto;
+    background-color: #BABABA;
+    border-top: 2px solid #e8e8e8;
+    border-left: 2px solid #e8e8e8;
+    border-right: 2px solid #757575;
+    border-bottom: 2px solid #757575;
+    min-width: 22px;
+    height: 22px;
+    color: grey;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .main #container .content {
+    padding: 10px 15px;
+    display: flex;
+    align-items: flex-start;
+  }
+  .main #container .content .warn {
+    margin-right: 15px;
+    width: 40px;
+    height: auto;
+  }
+  .main #container .content .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+  }
+  .main #container .content .text .buttons {
+    display: flex;
+    column-gap: 10px;
+    margin-top: 25px;
+  }
+  .main #container .content .text .buttons button {
+    background-color: #BABABA;
+    border-top: 3px solid #e8e8e8;
+    border-left: 3px solid #e8e8e8;
+    border-right: 3px solid #757575;
+    border-bottom: 3px solid #757575;
+    width: 70px;
+    padding: 3px 0;
+    font-size: 16px;
+  }
+  .main #container .content .text .buttons button:active {
+    border-top: 3px solid #757575;
+    border-left: 3px solid #757575;
+    border-right: 3px solid #e8e8e8;
+    border-bottom: 3px solid #e8e8e8;
+  }
+  .main #container .content .text .buttons button#no::after {
+    content: "No";
+  }
+  .main #container .content .text .buttons button#no:hover::after {
+    content: "Yes";
+  }
+  @media (max-width: 400px), (max-height: 400px) {
+    .main #container {
+      transform: translateY(-35px);
+      font-size: 14px;
+    }
+    .main #container .title {
+      padding: 4px 4px 4px 7px;
+    }
+    .main #container .title button {
+      min-width: 16px;
+      height: 16px;
+      font-size: 9px;
+    }
+    .main #container .content {
+      padding: 5px 8px;
+    }
+    .main #container .content .warn {
+      margin-right: 8px;
+      width: 35px;
+    }
+    .main #container .content .text {
+      padding-top: 10px;
+    }
+    .main #container .content .text .buttons {
+      column-gap: 5px;
+      margin-top: 15px;
+    }
+    .main #container .content .text .buttons button {
+      width: 50px;
+      padding: 3px 0;
+      font-size: 13px;
+    }
+  }
+  .main .overlay {
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    box-shadow: inset 0 0 50px 50px #131313;
+    border-radius: 30%;
+    pointer-events: none;
+  }
+  @media (max-width: 400px), (max-height: 400px) {
+    .main .overlay {
+      box-shadow: inset 0 0 30px 30px #131313;
+    }
+  }
+  .main .canvas_container {
+    border-radius: 30%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding-bottom: 100px;
+    filter: sepia(50%);
+  }
+  .main .canvas_container canvas {
+    border-radius: 30%;
+  }
+  </style>
 </head>
 <body>
 <div class="main">
@@ -30,7 +204,105 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js'></script>
 <script src='https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/three@0.126/examples/js/loaders/RGBELoader.js'></script>
-<script  src="./404.js"></script>
 
 </body>
+<script>
+  const {GLTFLoader} = THREE;
+const { RGBELoader } = THREE;
+const { RoughnessMipmapper } = THREE;
+
+let camera, scene, renderer, eye, face, pointLight;
+
+init();
+render();
+
+function init() {
+
+  const container = document.createElement( 'div' );
+  container.classList.add('canvas_container')
+  document.querySelector('.main').appendChild( container );
+
+  camera = new THREE.PerspectiveCamera( 55, 1, 0.25, 20 );
+  camera.position.set( 0, 0, 3.7);
+
+  scene = new THREE.Scene();
+
+  pointLight = new THREE.PointLight( 0x2c2c2c, 1.7, 2 );
+  pointLight.position.set( 0, 0, 1 );
+  scene.add( pointLight );
+
+  let light = new THREE.AmbientLight( 0x0c0c0c); // soft white light
+  scene.add( light );
+
+  new RGBELoader()
+    .setDataType( THREE.UnsignedByteType )
+    .load( 'https://raw.githubusercontent.com/Nik439/Images/master/cpc-bad-buttons/background.hdr', function ( texture ) {
+
+      const envMap = pmremGenerator.fromEquirectangular( texture ).texture;
+
+      scene.background = envMap;
+      scene.environment = envMap;
+
+      texture.dispose();
+      pmremGenerator.dispose();
+
+      render();
+
+      const loader = new GLTFLoader();
+      loader.load( 'https://raw.githubusercontent.com/Nik439/Images/master/cpc-bad-buttons/eye/scene.gltf', function ( gltf ) {
+
+        eye = gltf.scene
+
+        scene.add( eye );
+
+        render();
+
+      } );
+
+    } );
+
+  renderer = new THREE.WebGLRenderer( { antialias: true } );
+  renderer.setPixelRatio( window.devicePixelRatio );
+  renderer.setSize( Math.min(window.innerWidth, window.innerHeight) - 50, Math.min(window.innerWidth, window.innerHeight) - 50 );
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1;
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  container.appendChild( renderer.domElement );
+
+  const pmremGenerator = new THREE.PMREMGenerator( renderer );
+  pmremGenerator.compileEquirectangularShader();
+
+  window.addEventListener( 'resize', onWindowResize );
+
+}
+
+function onWindowResize() {
+
+  camera.aspect = 1;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize( Math.min(window.innerWidth, window.innerHeight) - 50, Math.min(window.innerWidth, window.innerHeight) - 50 );
+
+  render();
+
+}
+
+function render() {
+ 	renderer.render( scene, camera );
+	requestAnimationFrame( render );
+}
+
+document.addEventListener('mousemove', (e)=>{
+  if (eye) {
+    eye.rotation.set(((e.clientY+50)/window.innerHeight)-.5, (e.clientX/window.innerWidth)-.5, 0)
+  }
+})
+
+document.getElementById('no').addEventListener('mouseover', (e)=>{
+  document.getElementById('yes').innerText = 'No'
+})
+document.getElementById('no').addEventListener('mouseleave', (e)=>{
+  document.getElementById('yes').innerText = 'Yes'
+})
+</script>
 </html>
